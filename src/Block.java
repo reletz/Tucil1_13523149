@@ -1,47 +1,41 @@
 public class Block {
-  final private char label;
-  final private boolean[][] shape;
+  private final char[][] shape;
 
-  public Block(char label, boolean[][] shape) {
-    this.label = label;
+  public Block(char[][] shape) {
     this.shape = shape;
   }
 
-  public char getLabel() {
-    return label;
-  }
-
-  public boolean[][] getShape() {
+  public char[][] getShape() {
     return shape;
   }
 
   public void printBlock() {
-    for (boolean[] row: shape) {
-      for (boolean cell: row) {
-        System.out.print(cell ? label : ' ');
+    for (char[] row : shape) {
+      for (char cell : row) {
+        System.out.print(cell);
       }
       System.out.println();
     }
   }
 
-  public boolean[][] rotate() {
+  public Block rotate() {
     int rows = shape.length;
     int cols = shape[0].length;
-    boolean[][] rotated = new boolean[cols][rows];
+    char[][] rotated = new char[cols][rows];
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
-        rotated[j][rows - 1 - i] = shape[i][j];
+         rotated[j][rows - 1 - i] = shape[i][j];
       }
     }
 
-    return rotated;
+    return new Block(rotated);
   }
 
-  public boolean[][] mirror() {
+  public Block mirror() {
     int rows = shape.length;
     int cols = shape[0].length;
-    boolean[][] mirrored = new boolean[rows][cols];
+    char[][] mirrored = new char[rows][cols];
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
@@ -49,6 +43,6 @@ public class Block {
       }
     }
 
-    return mirrored;
+    return new Block(mirrored);
   }
 }
