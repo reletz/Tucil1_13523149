@@ -1,14 +1,13 @@
 5 5 7
 DEFAULT
-A A
-AAA
+A
+AA
 B
 BB
- C
+C
 CC
- D 
-DD
 D
+DD
 EE
 EE
 E

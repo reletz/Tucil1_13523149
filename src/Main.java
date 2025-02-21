@@ -1,27 +1,25 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-      try {
-        Scanner scanner = new Scanner(new File("../test/testdata.txt"));
-        TxtHandler txtHandler = new TxtHandler();
-        
-        Data data = txtHandler.handleInput(scanner);
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Masukkan nama file: ");
+    String fileName = "../test/testdata.txt"; //scanner.nextLine();
 
-        System.out.println("Board Size: " + data.N + "x" + data.M);
-        System.out.println("Puzzle Type: " + data.S);
-        System.out.println("Total Blocks: " + data.P);
-        
-        for (Block block : data.blocks) {
-            block.printBlock();
-            System.out.println();
-        }
-        
-        scanner.close();
-      } catch (FileNotFoundException e) {
-        System.out.println("File not found!");
-      }
+    TxtHandler txtHandler = new TxtHandler();
+    Data data;
+
+    try (Scanner fileScanner = new Scanner(new java.io.File(fileName))) {
+      data = txtHandler.handleInput(fileScanner);
+      if (data == null) return;
+    } catch (java.io.FileNotFoundException e) {
+      System.err.println("File tidak ditemukan: " + e.getMessage());
+      return;
     }
+
+    Board board = new Board(data.N, data.M);
+    Solver solver = new Solver(board, data.blocks);
+
+    solver.solve();
+  }
 }
