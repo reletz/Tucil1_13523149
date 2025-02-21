@@ -50,6 +50,11 @@ public class TxtHandler {
     // Baca P blok
     String currentLine = "";
     for (int i = 0; i < P; i++) {
+      if (!scanner.hasNextLine() && P > i + 1) {
+        System.err.println("Invalid input (Not enough blocks)");
+        return null;
+      }
+
       ArrayList<String> blockLines = new ArrayList<>();
       int maxLength = 0;
 
@@ -89,6 +94,7 @@ public class TxtHandler {
         }
       }
       blocks[i] = new Block(shape);
-    } return new Data(N, M, P, S, blocks);
+    } 
+    return new Data(N, M, P, S, blocks);
   } 
 }
