@@ -19,8 +19,6 @@ public class Solver {
 
     for (int flip = 0; flip < 2; flip++) {
       for (int rotation = 0; rotation < 4; rotation++) {
-        char[][] shape = block.getShape();
-
         for (int row = 0; row < board.rows; row++) {
           for (int col = 0; col < board.cols; col++) {
             visited++;

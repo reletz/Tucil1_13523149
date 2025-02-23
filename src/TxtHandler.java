@@ -49,19 +49,21 @@ public class TxtHandler {
 
     // Baca P blok
     String currentLine = "";
+    int blockCtr = 1;
     for (int i = 0; i < P; i++) {
-      if (!scanner.hasNextLine() && P > i + 1) {
-        System.err.println("Invalid input (Not enough blocks)");
+      if (!scanner.hasNextLine() && i < P - 1) {
+        System.err.println("Invalid input (Not enough blocks to render, P is higher)");
         return null;
       }
 
       ArrayList<String> blockLines = new ArrayList<>();
-      int maxLength = 0;
+      int maxLength;
 
       if (currentLine.isEmpty()) {
         if (!scanner.hasNextLine()) break;
         currentLine = trimEnd(scanner.nextLine());
       }
+
       char label = trimBoth(currentLine).charAt(0);
       blockLines.add(currentLine);
       maxLength = currentLine.length();
@@ -75,6 +77,7 @@ public class TxtHandler {
         char nextLabel = trimStart(nextLine).charAt(0);
         if (nextLabel != label) {
           currentLine = nextLine;
+          blockCtr++;
           break;
         }
 
@@ -94,7 +97,10 @@ public class TxtHandler {
         }
       }
       blocks[i] = new Block(shape);
-    } 
-    return new Data(N, M, P, S, blocks);
+    }
+    if (blockCtr != P) {
+      System.err.println("Invalid input (Block count mismatch, P is lower)");
+      return null;
+    } return new Data(N, M, P, S, blocks);
   } 
 }
