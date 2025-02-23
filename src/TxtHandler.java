@@ -23,6 +23,16 @@ public class TxtHandler {
     }
   }
 
+  private boolean validateConsistency(String s){
+    String trimmed = trimBoth(s);
+    char label = trimmed.charAt(0);
+    for (int i = 0; i < trimmed.length(); i++){
+      if (trimmed.charAt(i) != label && trimmed.charAt(i) != ' '){
+        return false;
+      }
+    } return true;
+  }
+
   public Data handleInput(Scanner scanner) {
     String n = scanner.next();
     int N = validateInt(n) ? Integer.parseInt(n) : 0;
@@ -63,7 +73,6 @@ public class TxtHandler {
         if (!scanner.hasNextLine()) break;
         currentLine = trimEnd(scanner.nextLine());
       }
-
       char label = trimBoth(currentLine).charAt(0);
       blockLines.add(currentLine);
       maxLength = currentLine.length();
@@ -92,8 +101,12 @@ public class TxtHandler {
       char[][] shape = new char[rows][cols];
       for (int j = 0; j < rows; j++) {
         String line = blockLines.get(j);
+        if (!validateConsistency(line)){
+          System.err.println("Invalid input (Block consistency mismatch)");
+          return null;
+        }
         for (int k = 0; k < cols; k++) {
-            shape[j][k] = (k < line.length()) ? line.charAt(k) : ' ';
+          shape[j][k] = (k < line.length()) ? line.charAt(k) : ' ';
         }
       }
       blocks[i] = new Block(shape);
