@@ -19,14 +19,29 @@ Java Development Kit (JDK) 21 atau lebih baru telah terinstal.
 JavaFX SDK 21.0.6 telah diunduh dan tersedia di C:/Program Files/javafx-sdk-21.0.6/.
 
 Folder struktur berikut telah dibuat:
-
+==
 .
-├── bin        # Folder untuk file hasil kompilasi
-├── src        # Folder berisi source code (Java)
-├── test       # Folder untuk test case
-│   ├── input  # Berisi file input test case
-│   ├── output # Berisi file output solusi
-└── README.md  # Dokumentasi ini
+├── bin
+│   ├── Block.class
+│   ├── Board.class
+│   ├── Data.class
+│   ├── GUI.class
+│   ├── Handler.class
+│   └── Solver.class
+├── doc
+│   └── Laporan Tucil1_13523149.pdf
+├── README.md
+├── src
+│   ├── Block.java
+│   ├── Board.java
+│   ├── Data.java
+│   ├── Handler.java
+│   ├── Main.java
+│   └── Solver.java
+└── test
+    ├── input
+    └── output
+==
 
 🛠 Instalasi
 
