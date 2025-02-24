@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 import javax.xml.namespace.QName;
 
-public class GUI extends Application {
+public class Main extends Application {
   private ListView<String> testCaseList;
   private TextArea fileContentArea;
   private Label resultLabel;
