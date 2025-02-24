@@ -1,0 +1,9 @@
+Solution found!
+CCADD
+CAADD
+CBBBF
+GGGGF
+EEFFF
+
+Time taken: 6016.989 ms
+Total possibilities visited: 886190119

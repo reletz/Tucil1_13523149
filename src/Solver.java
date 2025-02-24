@@ -11,7 +11,7 @@ public class Solver {
   public boolean solve(int blockIndex) {
     // base case
     if (blockIndex >= blocks.length) {
-      return true;
+      return true;  
     }
 
     // oks lanjut
@@ -40,24 +40,27 @@ public class Solver {
     } return false;
   }
 
-  public void solve(){
+  public String solve() {
     long startTime = System.nanoTime();
     
     boolean isFound = solve(0);
-
+  
     long endTime = System.nanoTime();
     double time = (endTime - startTime) / 1_000_000.0;
-
+  
+    StringBuilder result = new StringBuilder();
+    
     if (isFound && board.isFull()) {
-      System.out.println("Solution found:");
+      result.append("Solution found!\n");
     } else if (!isFound) {
-      System.out.println("No solution found (No combination of blocks can fit the board)");
+      result.append("No solution found (No combination of blocks can fit the board)\n");
     } else {
-      System.out.println("No solution found (Board is not full)");
+      result.append("No solution found (Board is not full)\n");
     }
-    board.printBoard();
-
-    System.out.println("Total possibilities visited: " + visited);
-    System.out.printf("Time taken: %.3f ms\n", time);
-  }
+  
+    result.append("Total possibilities visited: ").append(visited).append("\n");
+    result.append(String.format("Time taken: %.3f ms\n", time));
+  
+    return result.toString();
+  }  
 }  

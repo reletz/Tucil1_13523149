@@ -1,8 +1,11 @@
 import java.util.HashMap;
+import javafx.scene.paint.Color;
 
 public class Board {
   final public int rows, cols;
   final public char[][] grid;
+  final private static HashMap<Character, Color> colorMapGUI = new HashMap<>();
+  final private static Color EMPTY_CELL_COLOR = Color.WHITE;
   final private HashMap<Character, String> colorMap;
   private static final String RESET = "\u001B[0m";
   private static final String[] COLORS = {
@@ -32,7 +35,22 @@ public class Board {
     "\u001B[107m", // Background White
     "\u001B[41m",  // Background Dark Red
     "\u001B[42m"   // Background Dark Green
-  };  
+  };
+
+  //Buat GUI
+  static {
+    char[] labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    Color[] colors = {
+      Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PURPLE, Color.PINK,
+      Color.CYAN, Color.LIGHTGRAY, Color.BROWN, Color.MAGENTA, Color.LIME, Color.GOLD, Color.NAVY,
+      Color.TEAL, Color.SALMON, Color.INDIGO, Color.SILVER, Color.DARKORANGE, Color.AQUA, Color.KHAKI,
+      Color.MAROON, Color.DARKGREEN, Color.OLIVE, Color.DEEPPINK, Color.DARKVIOLET
+    };
+
+    for (int i = 0; i < labels.length; i++) {
+      colorMapGUI.put(labels[i], colors[i % colors.length]);
+    }
+  } 
 
   public Board(int rows, int cols) {
     this.rows = rows;
@@ -52,6 +70,23 @@ public class Board {
     }
   }
 
+  // GUI
+  public Color[][] getColorGrid() {
+    Color[][] colorGrid = new Color[rows][cols];
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        char cell = grid[i][j];
+        colorGrid[i][j] = (cell == ' ') ? EMPTY_CELL_COLOR : getColorForChar(cell);
+      }
+    }
+    return colorGrid;
+  }
+
+  private Color getColorForChar(char c) {
+    return colorMapGUI.getOrDefault(c, Color.BLACK);
+  }
+
+  // Non GUI
   public void printBoard() {
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
@@ -60,6 +95,18 @@ public class Board {
       }
       System.out.println();
     }
+  }
+
+  public String boardToString() {
+    if (grid == null) return "";
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        sb.append(grid[i][j]);
+      }
+      sb.append("\n");
+    }
+    return sb.toString();
   }
 
   public boolean isFull() {
