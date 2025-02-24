@@ -63,19 +63,11 @@ Gunakan perintah berikut untuk mengompilasi semua file Java ke dalam folder bin:
 
 javac --module-path "C:/Program Files/javafx-sdk-21.0.6/lib" --add-modules javafx.controls,javafx.fxml,javafx.swing -d bin src/*.java
 
-2. Jalankan Program dalam Mode GUI
+2. Jalankan Program
 
-Untuk menjalankan program dengan Graphical User Interface (GUI), gunakan perintah:
+Untuk menjalankan program, gunakan perintah:
 
-java --module-path "C:/Program Files/javafx-sdk-21.0.6/lib" --add-modules javafx.controls,javafx.fxml,javafx.swing -cp bin GUI
-
-3. Jalankan Program dalam Mode CLI
-
-Jika ingin menggunakan Command Line Interface (CLI), jalankan:
-
-java -cp bin GUI
-
-Saat berjalan dalam mode CLI, Anda akan diminta untuk memasukkan nama file test case yang berada di test/input/.
+java --module-path "C:/Program Files/javafx-sdk-21.0.6/lib" --add-modules javafx.controls,javafx.fxml,javafx.swing -cp bin Main
 
 Struktur File .txt untuk Test Case
 Test case harus disimpan di folder test/input/ dalam format berikut:
