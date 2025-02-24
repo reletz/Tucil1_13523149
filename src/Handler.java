@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.awt.image.BufferedImage;
 
 public class Handler {
-  private static final String INPUT_DIR = "../test/input/";
+  private static final String INPUT_DIR = "test/input/";
   private static Board lastBoard;
 
   private static String trimEnd(String s) {

@@ -1,0 +1,14 @@
+6 5 3
+DEFAULT
+P
+PPP
+ P  
+ P  
+X
+XXX
+X X
+Y
+YYYY
+ Y
+SSSS
+S SS
